@@ -83,6 +83,8 @@ public partial class CapathonBroadwayContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("gender");
+            entity.Property(e => e.Type)
+                .HasColumnName("type");
             entity.Property(e => e.AuthorizedPickup)
                 .IsUnicode(false)
                 .HasColumnName("authorizedPickup");

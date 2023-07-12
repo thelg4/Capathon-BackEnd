@@ -21,6 +21,8 @@ public partial class Dependent
 
     public string? Gender { get; set; }
 
+    public string? Type { get; set; }
+
     public string? AuthorizedPickup { get; set; }
 
     public string? MedicalInfo { get; set; }
