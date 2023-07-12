@@ -77,14 +77,13 @@ namespace Capathon.Services.DependentService
             if(dependent == null)
                 throw new Exception($"Dependent with ID '{updatedDependent.DId}' not found.");
 
-            dependent.UId = updatedDependent.DId;
+            dependent.UId = updatedDependent.UId;
             dependent.FirstName = updatedDependent.FirstName;
             dependent.LastName = updatedDependent.LastName;
             dependent.Age = updatedDependent.Age; 
             dependent.Gender = updatedDependent.Gender; 
             dependent.Accomodations = updatedDependent.Accomodations; 
             dependent.MedicalInfo = updatedDependent.MedicalInfo;
-
 
             await _dataContext.SaveChangesAsync();
             serviceResponse.Data = _mapper.Map<GetDependentDto>(dependent); 

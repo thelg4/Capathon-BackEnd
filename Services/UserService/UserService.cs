@@ -41,7 +41,7 @@ namespace Capathon.Services
         public async Task<ServiceResponse<GetUserDto>> GetUserById(int id)
         {
             var serviceResponse = new ServiceResponse<GetUserDto>();
-            var user = await _dataContext.Users.FirstOrDefaultAsync(i => i.CId == id);
+            var user = await _dataContext.Users.FirstOrDefaultAsync(i => i.UId == id);
             serviceResponse.Data = _mapper.Map<GetUserDto>(user);
             return serviceResponse;
         }
@@ -80,6 +80,7 @@ namespace Capathon.Services
                 user.Email = updatedUser.Email;
                 user.Address = updatedUser.Address;
 
+                await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetUserDto>(user);
             }
             catch (Exception ex)
@@ -100,7 +101,7 @@ namespace Capathon.Services
                     throw new Exception($"User with Id {id} not found.");
 
                 _dataContext.Users.Remove(user);
-
+                await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = await _dataContext.Users.Select(c => _mapper.Map<GetUserDto>(c)).ToListAsync();
             }
             catch (Exception ex)

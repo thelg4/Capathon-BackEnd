@@ -30,7 +30,7 @@ namespace Capathon.Services.AppointmentService
             var serviceResponse = new ServiceResponse<List<GetAppointmentDto>>();
 
             try{
-            var appointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.UId == id); //Need ID for appointments (AId?)
+            var appointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.AId == id);
             if(appointment == null){
                 throw new Exception($"Appointment with ID '{id}' not found.");
             }
@@ -59,7 +59,7 @@ namespace Capathon.Services.AppointmentService
         {
 
             var serviceResponse = new ServiceResponse<GetAppointmentDto>();
-            var dbAppointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.UId == id);
+            var dbAppointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.AId == id);
             serviceResponse.Data = _mapper.Map<GetAppointmentDto>(dbAppointment);
             return serviceResponse;
         }
@@ -69,9 +69,9 @@ namespace Capathon.Services.AppointmentService
             var serviceResponse = new ServiceResponse<GetAppointmentDto>();
 
             try{
-            var appointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.UId == updatedAppointment.UId);
+            var appointment = await _dataContext.Appointments.FirstOrDefaultAsync(a => a.AId == updatedAppointment.AId);
             if(appointment == null)
-                throw new Exception($"Appointment for user with ID '{updatedAppointment.UId}' not found.");
+                throw new Exception($"Appointment for user with ID '{updatedAppointment.AId}' not found.");
 
             appointment.PickupTime = updatedAppointment.PickupTime;
             appointment.DropoffTime = updatedAppointment.DropoffTime;
