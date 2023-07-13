@@ -7,8 +7,6 @@ public partial class User
 {
     public int UId { get; set; }
 
-    public string? DIds { get; set; }
-
     public int? CId { get; set; }
 
     public string? Username { get; set; }
