@@ -12,15 +12,6 @@ namespace Capathon.Services
 {
     public class UserService : IUserService
     {
-        private static List<User> users = new List<User>{
-            new User {  UId = 1, CId = 1, DIds = "",
-                        Username = "username", Password = "Password", 
-                        FirstName = "Nick", LastName = "Mynatt", 
-                        PhoneNumber = "123456789", Email = "nick.mynatt@capgemini.com", Address = "123 Street",
-                        Dependents = new List<Dependent>(),
-            },
-        };
-
         private readonly IMapper _mapper;
         private readonly CapathonBroadwayContext _dataContext;
 
@@ -70,7 +61,6 @@ namespace Capathon.Services
                 if (user == null)
                     throw new Exception($"User with Id {updatedUser.UId} not found.");
                 
-                user.DIds = updatedUser.DIds;
                 user.CId = updatedUser.CId;
                 user.Username = updatedUser.Username;
                 user.Password = updatedUser.Password;
