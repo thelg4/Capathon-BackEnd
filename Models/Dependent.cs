@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Capathon.Models;
 
 public partial class Dependent
 {
+    [Key]
     public int DId { get; set; }
 
+    [ForeignKey("User")]
     public int UId { get; set; }
 
     public string? FirstName { get; set; }
@@ -16,6 +20,8 @@ public partial class Dependent
     public int? Age { get; set; }
 
     public string? Gender { get; set; }
+
+    public string? Type { get; set; }
 
     public string? AuthorizedPickup { get; set; }
 
@@ -29,5 +35,5 @@ public partial class Dependent
 
     public bool? Allergies { get; set; }
 
-    // public virtual User UIdNavigation { get; set; } = null!;
+    public virtual User User { get; set; } = null!; // THIS MATTERS ??
 }

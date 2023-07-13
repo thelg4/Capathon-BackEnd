@@ -11,7 +11,7 @@ using Capathon.Dtos.CareCenter;
 
 namespace Capathon
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CareCenterController : ControllerBase
     {

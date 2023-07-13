@@ -9,7 +9,7 @@ using Capathon.Models;
 
 namespace Capathon
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DependentController : ControllerBase
     {

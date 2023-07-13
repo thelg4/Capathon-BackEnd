@@ -68,7 +68,7 @@ namespace Capathon.Services
                 var user = 
                     await _dataContext.Users.FirstOrDefaultAsync(i => i.UId == updatedUser.UId);
                 if (user == null)
-                    throw new Exception($"User with Id {updatedUser.CId} not found.");
+                    throw new Exception($"User with Id {updatedUser.UId} not found.");
                 
                 user.DIds = updatedUser.DIds;
                 user.CId = updatedUser.CId;
@@ -82,7 +82,7 @@ namespace Capathon.Services
 
                 serviceResponse.Data = _mapper.Map<GetUserDto>(user);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }
@@ -103,10 +103,19 @@ namespace Capathon.Services
 
                 serviceResponse.Data = await _dataContext.Users.Select(c => _mapper.Map<GetUserDto>(c)).ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetDependentDto>>> GetUserDependents(int id)
+        {
+           
+            var serviceResponse = new ServiceResponse<List<GetDependentDto>>();
+            serviceResponse.Data = await _dataContext.Dependents.Where(d => d.UId == id).Select(c => _mapper.Map<GetDependentDto>(c)).ToListAsync();
+
             return serviceResponse;
         }
     }

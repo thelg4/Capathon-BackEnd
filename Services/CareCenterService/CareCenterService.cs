@@ -70,6 +70,7 @@ namespace Capathon.Services
                 careCenter.IsCorp = updatedCareCenter.IsCorp;
                 careCenter.Type = updatedCareCenter.Type;
 
+                await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetCareCenterDto>(careCenter);
             }
             catch (Exception ex)
@@ -90,7 +91,7 @@ namespace Capathon.Services
                     throw new Exception($"CareCenter with Id {id} not found.");
 
                 _dataContext.CareCenters.Remove(careCenter);
-
+                await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = await _dataContext.CareCenters.Select(c => _mapper.Map<GetCareCenterDto>(c)).ToListAsync();
             }
             catch (Exception ex)

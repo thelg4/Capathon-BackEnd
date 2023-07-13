@@ -11,7 +11,7 @@ using Capathon.Dtos.Appointment;
 
 namespace Capathon
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AppointmentController : ControllerBase
     {
