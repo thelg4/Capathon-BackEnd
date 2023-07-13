@@ -11,7 +11,7 @@ using Capathon.Dtos.User;
 
 namespace Capathon
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -34,7 +34,7 @@ namespace Capathon
             return Ok(await _userService.GetUserById(id));
         }
 
-         [HttpGet("/dependent-lookup/{id}")]
+         [HttpGet("dependent-lookup/{id}")]
         public async Task<ActionResult<ServiceResponse<GetUserDto>>> GetUserDependents(int id)
         {
             return Ok(await _userService.GetUserDependents(id));
