@@ -64,7 +64,8 @@ namespace Capathon.Services
                     await _dataContext.CareCenters.FirstOrDefaultAsync(c => c.CId == updatedCareCenter.CId);
                 if (careCenter == null)
                     throw new Exception($"Care Center with Id {updatedCareCenter.CId} not found.");
-                
+                    
+                careCenter.CenterName = updatedCareCenter.CenterName;
                 careCenter.Address = updatedCareCenter.Address;
                 careCenter.PhoneNumber = updatedCareCenter.PhoneNumber;
                 careCenter.IsCorp = updatedCareCenter.IsCorp;
@@ -73,7 +74,7 @@ namespace Capathon.Services
                 await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetCareCenterDto>(careCenter);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }
@@ -94,7 +95,7 @@ namespace Capathon.Services
                 await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = await _dataContext.CareCenters.Select(c => _mapper.Map<GetCareCenterDto>(c)).ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }

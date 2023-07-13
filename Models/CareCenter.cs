@@ -6,6 +6,8 @@ namespace Capathon.Models;
 public partial class CareCenter
 {
     public int CId { get; set; }
+    
+    public string? CenterName {get;set;}
 
     public string? Address { get; set; }
 

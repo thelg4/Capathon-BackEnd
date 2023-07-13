@@ -3,6 +3,7 @@ namespace Capathon.Dtos.CareCenter
     public class GetCareCenterDto
     {
         public int CId { get; set; }
+        public string? CenterName {get;set;}
 
         public string? Address { get; set; }
 

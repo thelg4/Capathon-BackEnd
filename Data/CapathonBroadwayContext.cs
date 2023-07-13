@@ -48,6 +48,10 @@ public partial class CapathonBroadwayContext : DbContext
             entity.Property(e => e.CId)
                 .ValueGeneratedOnAdd()
                 .HasColumnName("c_id");
+            entity.Property(e => e.CenterName)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("centerName");
             entity.Property(e => e.Address)
                 .HasMaxLength(100)
                 .IsUnicode(false)
