@@ -108,5 +108,14 @@ namespace Capathon.Services
 
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetUserDto>> GetUserFromLogin(string username, string password)
+        {
+            var serviceResponse = new ServiceResponse<GetUserDto>();
+            var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+
+            serviceResponse.Data = _mapper.Map<GetUserDto>(user);
+            return serviceResponse;
+        }
     }
 }

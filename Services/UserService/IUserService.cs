@@ -16,5 +16,6 @@ namespace Capathon.Services
         Task<ServiceResponse<GetUserDto>> UpdateUser(UpdateUserDto updatedUser);
         Task<ServiceResponse<List<GetUserDto>>> DeleteUser(int id);
         Task<ServiceResponse<List<GetDependentDto>>>  GetUserDependents(int id);
+        Task<ServiceResponse<GetUserDto>> GetUserFromLogin(string username, string password);
     }
 }
