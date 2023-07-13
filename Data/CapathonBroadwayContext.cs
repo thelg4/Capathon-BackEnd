@@ -115,9 +115,6 @@ public partial class CapathonBroadwayContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("address");
-            entity.Property(e => e.DIds)
-                .IsUnicode(false)
-                .HasColumnName("d_ids");
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)

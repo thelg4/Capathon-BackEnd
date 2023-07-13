@@ -2,8 +2,6 @@ namespace Capathon.Dtos.User
 {
     public class AddUserDto
     {
-        public string? DIds { get; set; }
-
         public int? CId { get; set; }
 
         public string? Username { get; set; }
