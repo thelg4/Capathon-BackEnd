@@ -34,7 +34,13 @@ namespace Capathon
             return Ok(await _userService.GetUserById(id));
         }
 
-         [HttpGet("dependent-lookup/{id}")]
+        [HttpGet("user-lookup/{username}-{password}")]
+        public async Task<ActionResult<ServiceResponse<GetUserDto>>> GetUserFromLogin(string username, string password)
+        {
+            return Ok(await _userService.GetUserFromLogin(username, password));
+        }
+
+        [HttpGet("dependent-lookup/{id}")]
         public async Task<ActionResult<ServiceResponse<GetUserDto>>> GetUserDependents(int id)
         {
             return Ok(await _userService.GetUserDependents(id));

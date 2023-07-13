@@ -75,6 +75,7 @@ namespace Capathon.Services.AppointmentService
 
             appointment.PickupTime = updatedAppointment.PickupTime;
             appointment.DropoffTime = updatedAppointment.DropoffTime;
+            appointment.Date = updatedAppointment.Date;
             appointment.CId = updatedAppointment.CId; 
             appointment.DId = updatedAppointment.DId; 
             appointment.UId = updatedAppointment.UId; 
