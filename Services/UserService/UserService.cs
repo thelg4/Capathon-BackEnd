@@ -41,7 +41,7 @@ namespace Capathon.Services
         public async Task<ServiceResponse<GetUserDto>> GetUserById(int id)
         {
             var serviceResponse = new ServiceResponse<GetUserDto>();
-            var user = await _dataContext.Users.FirstOrDefaultAsync(i => i.UId == id);
+            var user = await _dataContext.Users.FirstOrDefaultAsync(i => i.CId == id);
             serviceResponse.Data = _mapper.Map<GetUserDto>(user);
             return serviceResponse;
         }
@@ -68,7 +68,7 @@ namespace Capathon.Services
                 var user = 
                     await _dataContext.Users.FirstOrDefaultAsync(i => i.UId == updatedUser.UId);
                 if (user == null)
-                    throw new Exception($"User with Id {updatedUser.CId} not found.");
+                    throw new Exception($"User with Id {updatedUser.UId} not found.");
                 
                 user.DIds = updatedUser.DIds;
                 user.CId = updatedUser.CId;
@@ -80,10 +80,9 @@ namespace Capathon.Services
                 user.Email = updatedUser.Email;
                 user.Address = updatedUser.Address;
 
-                await _dataContext.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetUserDto>(user);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }
@@ -101,13 +100,22 @@ namespace Capathon.Services
                     throw new Exception($"User with Id {id} not found.");
 
                 _dataContext.Users.Remove(user);
-                await _dataContext.SaveChangesAsync();
+
                 serviceResponse.Data = await _dataContext.Users.Select(c => _mapper.Map<GetUserDto>(c)).ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 serviceResponse.Success = false;
             }
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetDependentDto>>> GetUserDependents(int id)
+        {
+           
+            var serviceResponse = new ServiceResponse<List<GetDependentDto>>();
+            serviceResponse.Data = await _dataContext.Dependents.Where(d => d.UId == id).Select(c => _mapper.Map<GetDependentDto>(c)).ToListAsync();
+
             return serviceResponse;
         }
     }
