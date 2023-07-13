@@ -27,14 +27,17 @@ public partial class CapathonBroadwayContext : DbContext
                 .ValueGeneratedOnAdd()
                 .HasColumnName("a_id");
 
-            entity.Property(e => e.CId).HasColumnName("c_id");
-            entity.Property(e => e.DId).HasColumnName("d_id");
             entity.Property(e => e.DropoffTime)
-                .HasColumnType("datetime")
+                .IsUnicode(false)
                 .HasColumnName("dropoff_time");
             entity.Property(e => e.PickupTime)
-                .HasColumnType("datetime")
+                .IsUnicode(false)
                 .HasColumnName("pickup_time");
+            entity.Property(e => e.Date)
+                .IsUnicode(false)
+                .HasColumnName("date");
+            entity.Property(e => e.CId).HasColumnName("c_id");
+            entity.Property(e => e.DId).HasColumnName("d_id");
             entity.Property(e => e.UId).HasColumnName("u_id");
         });
 

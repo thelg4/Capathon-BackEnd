@@ -3,9 +3,12 @@ namespace Capathon.Dtos.Appointment
     public class UpdateAppointmentDto
     {
         public int AId { get; set; }
-        public DateTime? PickupTime { get; set; }
 
-        public DateTime? DropoffTime { get; set; }
+        public string? PickupTime { get; set; }
+
+        public string? DropoffTime { get; set; }
+
+        public string? Date { get; set; }
 
         public int? CId { get; set; }
 
@@ -13,10 +16,10 @@ namespace Capathon.Dtos.Appointment
 
         public int? UId { get; set; }
 
-        //public virtual CareCenter? CIdNavigation { get; set; }
+        // public virtual CareCenter? CareCenter { get; set; }
 
-        //public virtual Dependent? DIdNavigation { get; set; }
+        // public virtual Dependent? Dependent { get; set; }
 
-        //public virtual User? UIdNavigation { get; set; }
+        // public virtual User? User { get; set; }
     }
 }

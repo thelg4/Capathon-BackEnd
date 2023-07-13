@@ -8,9 +8,11 @@ public partial class Appointment
 {
     public int AId { get; set; }
 
-    public DateTime? PickupTime { get; set; }
+    public string? PickupTime { get; set; }
 
-    public DateTime? DropoffTime { get; set; }
+    public string? DropoffTime { get; set; }
+
+    public string? Date { get; set; }
 
     [ForeignKey("CareCenter")]
     public int? CId { get; set; }
